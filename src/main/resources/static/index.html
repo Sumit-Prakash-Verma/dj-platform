@@ -1,0 +1,560 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DJ Platform | Live Rooms</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+    <aside class="sidebar">
+        <h2>🎧 DJ PLATFORM</h2>
+
+        <nav>
+            <a href="#" class="active">Discover</a>
+            <a href="#rooms">Live Rooms</a>
+            <a href="#music-queue-section">Music Queue</a>
+            <a href="#ai-dj-transition-section">AI DJ Transitions</a>
+            <a href="#soundclash-section">Soundclash Voting</a>
+            <a href="#chat-section">Room Chat</a>
+            <a href="#auth-section">My Account</a>
+        </nav>
+
+        <p class="sidebar-footer">
+            Feel the music. Share the vibe.
+        </p>
+    </aside>
+
+    <main class="main-content">
+
+        <header class="topbar">
+            <div>
+                <p class="eyebrow">YOUR MUSIC COMMUNITY</p>
+                <h1>Find Your Vibe 🎵</h1>
+                <p>Join a room. Share the music.</p>
+            </div>
+
+            <span class="status">🟢 Platform Online</span>
+        </header>
+
+        <section class="hero">
+            <div>
+                <span class="live-label">● LIVE EXPERIENCE</span>
+                <h2>Music sounds better together.</h2>
+                <p>Discover music rooms and connect with listeners.</p>
+                <a href="#rooms" class="primary-btn">
+                    Explore Rooms →
+                </a>
+            </div>
+        </section>
+
+        <!-- LOGIN AND REGISTER SECTION -->
+        <section id="auth-section" class="auth-section">
+            <div class="section-heading">
+                <div>
+                    <h2>Your Account</h2>
+                    <p>Login or create an account to join music rooms.</p>
+                </div>
+            </div>
+
+            <div id="auth-forms" class="auth-grid">
+
+                <form id="login-form" class="auth-card">
+                    <h3>Welcome Back 👋</h3>
+                    <p>Login to your account.</p>
+
+                    <label for="login-username">Username</label>
+                    <input
+                        type="text"
+                        id="login-username"
+                        name="username"
+                        placeholder="Enter username"
+                        autocomplete="username"
+                        required
+                    >
+
+                    <label for="login-password">Password</label>
+                    <input
+                        type="password"
+                        id="login-password"
+                        name="password"
+                        placeholder="Enter password"
+                        autocomplete="current-password"
+                        required
+                    >
+
+                    <button type="submit" class="primary-btn">
+                        Login
+                    </button>
+
+                    <p id="login-message" class="auth-message"
+                       role="status" aria-live="polite"></p>
+                </form>
+
+                <form id="register-form" class="auth-card">
+                    <h3>Create Account ✨</h3>
+                    <p>Join the DJ Platform community.</p>
+
+                    <label for="register-username">Username</label>
+                    <input
+                        type="text"
+                        id="register-username"
+                        name="username"
+                        placeholder="Choose username"
+                        maxlength="100"
+                        autocomplete="username"
+                        required
+                    >
+
+                    <label for="register-email">Email</label>
+                    <input
+                        type="email"
+                        id="register-email"
+                        name="email"
+                        placeholder="Enter email"
+                        maxlength="150"
+                        autocomplete="email"
+                        required
+                    >
+
+                    <label for="register-password">Password</label>
+                    <input
+                        type="password"
+                        id="register-password"
+                        name="password"
+                        placeholder="At least 8 characters"
+                        minlength="8"
+                        autocomplete="new-password"
+                        required
+                    >
+
+                    <button type="submit" class="primary-btn">
+                        Create Account
+                    </button>
+
+                    <p id="register-message" class="auth-message"
+                       role="status" aria-live="polite"></p>
+                </form>
+
+            </div>
+
+            <div id="user-panel" class="auth-card" hidden>
+                <h3>You're logged in! 🎉</h3>
+                <p>
+                    Welcome, <strong id="current-username"></strong>
+                </p>
+
+                <button id="logout-btn" type="button" class="leave-btn">
+                    Logout
+                </button>
+
+                <p id="logout-message" class="auth-message"
+                   role="status" aria-live="polite"></p>
+            </div>
+        </section>
+
+        <!-- MUSIC ROOMS -->
+        <section id="rooms">
+            <div class="section-heading">
+                <div>
+                    <h2>Live Music Rooms</h2>
+                    <p>Choose your vibe and join the community.</p>
+                </div>
+
+                <span id="room-count">Loading...</span>
+            </div>
+
+            <div id="room-list" class="room-grid">
+                <p>Loading music rooms...</p>
+            </div>
+
+            <p id="error-message" class="error-message"></p>
+        </section>
+
+        <!-- LIVE MUSIC QUEUE -->
+        <section id="music-queue-section" class="auth-section">
+            <div class="section-heading">
+                <div>
+                    <h2>🎵 Live Music Queue</h2>
+                    <p>Add songs and see what's next in the room.</p>
+                </div>
+            </div>
+
+            <div class="auth-card">
+                <form id="add-song-form">
+                    <label for="song-title">Song Title</label>
+                    <input
+                        type="text"
+                        id="song-title"
+                        name="title"
+                        placeholder="Enter song title"
+                        maxlength="200"
+                        required
+                    >
+
+                    <label for="song-artist">Artist Name</label>
+                    <input
+                        type="text"
+                        id="song-artist"
+                        name="artist"
+                        placeholder="Enter artist name (optional)"
+                        maxlength="200"
+                    >
+
+                    <label for="song-bpm">Song BPM (optional)</label>
+                    <input
+                        type="number"
+                        id="song-bpm"
+                        name="bpm"
+                        placeholder="Example: 126"
+                        min="1"
+                        max="300"
+                    >
+
+                    <label for="song-genre">Genre (optional)</label>
+                    <select id="song-genre" name="genre">
+                        <option value="">Select genre</option>
+                        <option value="EDM">EDM</option>
+                        <option value="Bollywood">Bollywood</option>
+                        <option value="Lo-Fi">Lo-Fi</option>
+                        <option value="Pop">Pop</option>
+                        <option value="Hip-Hop">Hip-Hop</option>
+                        <option value="Rock">Rock</option>
+                        <option value="Other">Other</option>
+                    </select>
+
+                    <button type="submit" class="primary-btn">
+                        ➕ Add Song
+                    </button>
+                </form>
+
+                <p
+                    id="queue-message"
+                    class="auth-message"
+                    role="status"
+                    aria-live="polite"
+                ></p>
+            </div>
+
+            <div class="auth-card">
+                <h3>🎧 Upcoming Songs</h3>
+
+                <ul id="music-queue-list">
+                    <li>Loading songs...</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- AI DJ TRANSITION GUIDE -->
+        <section id="ai-dj-transition-section" class="auth-section">
+            <div class="section-heading">
+                <div>
+                    <h2>🎚️ AI DJ Transition Guide</h2>
+                    <p>
+                        Get transition suggestions using song BPM and genre.
+                    </p>
+                </div>
+            </div>
+
+            <div class="auth-card">
+                <p id="transition-room-name">
+                    Select a room to view its transitions.
+                </p>
+
+                <p id="transition-message"
+                   class="auth-message"
+                   role="status"
+                   aria-live="polite">
+                    Transition recommendations will appear here.
+                </p>
+
+                <div id="transition-list" class="transition-list">
+                    <p>
+                        Join a music room and add songs with BPM and genre
+                        to get transition recommendations.
+                    </p>
+                </div>
+
+                <button
+                    type="button"
+                    id="refresh-transitions-btn"
+                    class="primary-btn"
+                >
+                    🔄 Refresh Transitions
+                </button>
+            </div>
+        </section>
+
+        <!-- SOUNCLASH VOTING -->
+        <section id="soundclash-section" class="auth-section">
+            <div class="section-heading">
+                <div>
+                    <h2>⚔️ Soundclash Arena</h2>
+                    <p>
+                        Choose your favourite track and support your winner.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Create a voting round -->
+            <div class="auth-card">
+                <h3>🎵 Create a Soundclash Round</h3>
+                <p>
+                    Select two different songs for your room's voting round.
+                </p>
+
+                <form id="soundclash-create-form">
+
+                    <label for="soundclash-song-a">
+                        Song A Title
+                    </label>
+                    <input
+                        type="text"
+                        id="soundclash-song-a"
+                        name="songATitle"
+                        placeholder="Enter first song title"
+                        maxlength="200"
+                        required
+                    >
+
+                    <label for="soundclash-artist-a">
+                        Song A Artist (optional)
+                    </label>
+                    <input
+                        type="text"
+                        id="soundclash-artist-a"
+                        name="songAArtist"
+                        placeholder="Enter artist name"
+                        maxlength="200"
+                    >
+
+                    <label for="soundclash-song-b">
+                        Song B Title
+                    </label>
+                    <input
+                        type="text"
+                        id="soundclash-song-b"
+                        name="songBTitle"
+                        placeholder="Enter second song title"
+                        maxlength="200"
+                        required
+                    >
+
+                    <label for="soundclash-artist-b">
+                        Song B Artist (optional)
+                    </label>
+                    <input
+                        type="text"
+                        id="soundclash-artist-b"
+                        name="songBArtist"
+                        placeholder="Enter artist name"
+                        maxlength="200"
+                    >
+
+                    <button type="submit" class="primary-btn">
+                        ⚔️ Start Soundclash
+                    </button>
+                </form>
+
+                <p
+                    id="soundclash-create-message"
+                    class="auth-message"
+                    role="status"
+                    aria-live="polite"
+                ></p>
+            </div>
+
+            <!-- Current voting round -->
+            <div class="auth-card">
+                <div class="section-heading">
+                    <div>
+                        <h3>🏆 Current Battle</h3>
+                        <p id="soundclash-room-name">
+                            Select and join a room first.
+                        </p>
+                    </div>
+
+                    <button
+                        type="button"
+                        id="soundclash-refresh-btn"
+                        class="primary-btn"
+                    >
+                        🔄 Refresh
+                    </button>
+                </div>
+
+                <p
+                    id="soundclash-message"
+                    class="auth-message"
+                    role="status"
+                    aria-live="polite"
+                >
+                    Join a room to view its active Soundclash round.
+                </p>
+
+                <div id="soundclash-round" hidden>
+
+                    <p>
+                        Round ID:
+                        <strong id="soundclash-round-id">-</strong>
+                    </p>
+
+                    <div class="auth-grid">
+
+                        <!-- Song A -->
+                        <div class="auth-card">
+                            <h3 id="soundclash-display-song-a">
+                                Song A
+                            </h3>
+
+                            <p id="soundclash-display-artist-a">
+                                Artist not specified
+                            </p>
+
+                           <p id="soundclash-votes-a">0</p>
+
+                            <button
+                                type="button"
+                                id="soundclash-vote-a-btn"
+                                class="primary-btn"
+                            >
+                                🗳️ Vote for A
+                            </button>
+                        </div>
+
+                        <!-- Song B -->
+                        <div class="auth-card">
+                            <h3 id="soundclash-display-song-b">
+                                Song B
+                            </h3>
+
+                            <p id="soundclash-display-artist-b">
+                                Artist not specified
+                            </p>
+
+                            <p id="soundclash-votes-b">0</p>
+
+                            <button
+                                type="button"
+                                id="soundclash-vote-b-btn"
+                                class="primary-btn"
+                            >
+                                🗳️ Vote for B
+                            </button>
+                        </div>
+
+                    </div>
+
+                    <div class="auth-card">
+                        <h3>📊 Voting Results</h3>
+
+                        <p id="soundclash-total-votes">0</p>
+
+                        <p>
+                            Current result:
+                            <strong id="soundclash-winner">Waiting for votes</strong>
+                        </p>
+
+                        <p id="soundclash-round-status">
+                            Round status: Unknown
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- REAL-TIME ROOM CHAT -->
+        <section id="chat-section" class="chat-section" hidden>
+            <div class="section-heading">
+                <div>
+                    <h2>💬 Room Chat</h2>
+                    <p id="chat-room-name">
+                        Connect with music lovers.
+                    </p>
+                </div>
+
+                <button
+                    type="button"
+                    id="close-chat-btn"
+                    class="leave-btn"
+                >
+                    Close Chat
+                </button>
+            </div>
+
+            <p id="chat-connection-status" role="status">
+                Chat is not connected yet.
+            </p>
+
+            <div
+                id="chat-messages"
+                class="chat-messages"
+                aria-live="polite"
+                aria-label="Chat messages"
+            >
+                <p>Chat messages will appear here.</p>
+            </div>
+
+            <form id="chat-form" class="chat-form">
+                <input
+                    type="text"
+                    id="chat-input"
+                    name="message"
+                    placeholder="Type your message..."
+                    maxlength="2000"
+                    autocomplete="off"
+                    required
+                >
+
+                <button type="submit" class="primary-btn">
+                    Send
+                </button>
+            </form>
+
+            <p
+                id="chat-error-message"
+                class="error-message"
+                role="alert"
+            ></p>
+        </section>
+
+        <!-- MUSIC RECOMMENDATIONS -->
+        <section id="recommendations-section">
+            <h2>🎧 Your Music Recommendations</h2>
+
+            <div id="preference-options">
+                <label>
+                    <input type="checkbox" value="EDM"> EDM
+                </label>
+
+                <label>
+                    <input type="checkbox" value="Bollywood"> Bollywood
+                </label>
+
+                <label>
+                    <input type="checkbox" value="Lo-Fi"> Lo-Fi
+                </label>
+            </div>
+
+            <button id="save-preferences-btn" type="button">
+                Save My Preferences
+            </button>
+
+            <p id="recommendation-message"></p>
+            <div id="recommended-songs"></div>
+        </section>
+
+        <footer>Made for music lovers 🎶</footer>
+    </main>
+
+    <!-- WebSocket Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+
+    <!-- Application JavaScript -->
+    <script src="/script.js"></script>
+
+</body>
+</html>
